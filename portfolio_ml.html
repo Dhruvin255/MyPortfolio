@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dhruvin Jhaveri — Backend SDE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #FFFFFF; color: #1a1a1a; line-height: 1.6; }
+    header { position: sticky; top: 0; background: #FFFFFF; border-bottom: 2px solid #002B5C; z-index: 100; padding: 20px 40px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 22px; font-weight: 800; color: #002B5C; font-family: 'Poppins', sans-serif; }
+    .nav-links { display: flex; gap: 30px; }
+    .nav-links a { font-size: 13px; font-weight: 700; color: #00BCD4; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; transition: color 0.3s ease; }
+    .nav-links a:hover { color: #002B5C; }
+
+    #hero {
+      background: linear-gradient(135deg, #002B5C 0%, #1a5a96 100%);
+      padding: 120px 40px;
+      text-align: center;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 72px;
+      font-weight: 800;
+      margin-bottom: 24px;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      display: inline-block;
+    }
+
+    h1:hover {
+      color: #00BCD4;
+      transform: scale(1.05);
+    }
+
+    h1::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: #00BCD4;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+      transform-origin: left;
+    }
+
+    h1:hover::after {
+      transform: scaleX(1);
+    }
+
+    .role {
+      font-size: 24px;
+      color: #00BCD4;
+      font-weight: 700;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .role:hover {
+      letter-spacing: 4px;
+      text-shadow: 0 0 20px rgba(0, 188, 212, 0.5);
+    }
+
+    .tagline {
+      font-size: 20px;
+      color: #E8F4FF;
+      margin-bottom: 60px;
+      line-height: 1.8;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .tagline:hover {
+      color: #00BCD4;
+      font-size: 21px;
+    }
+
+    .hero-socials {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .social-link {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid #00BCD4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: #00BCD4;
+      font-weight: 700;
+      font-size: 18px;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .social-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: #00BCD4;
+      transition: left 0.3s ease;
+      z-index: -1;
+      border-radius: 50%;
+    }
+
+    .social-link:hover {
+      transform: translateY(-12px) scale(1.1);
+      box-shadow: 0 20px 40px rgba(0, 188, 212, 0.4);
+      color: #002B5C;
+    }
+
+    .social-link:hover::before {
+      left: 0;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 16px 40px;
+      background: transparent;
+      border: 2px solid #00BCD4;
+      color: #00BCD4;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 14px;
+      margin-top: 20px;
+    }
+
+    .cta-button:hover {
+      background: #00BCD4;
+      color: #002B5C;
+      transform: translateY(-4px);
+      box-shadow: 0 15px 40px rgba(0, 188, 212, 0.3);
+    }
+
+    section { padding: 80px 40px; max-width: 1400px; margin: 0 auto; }
+    .section-title { font-size: 44px; font-weight: 800; margin-bottom: 50px; color: #002B5C; font-family: 'Poppins', sans-serif; border-bottom: 4px solid #00BCD4; padding-bottom: 20px; display: inline-block; }
+    #about { background: #F5F9FC; border-left: 6px solid #00BCD4; }
+    #about p { font-size: 17px; color: #333; line-height: 1.9; max-width: 900px; }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; margin-top: 40px; }
+    .project-card { background: white; border: 2px solid #E0E0E0; border-radius: 12px; padding: 40px; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .project-card:hover { border-color: #00BCD4; box-shadow: 0 8px 32px rgba(0,188,212,0.2); transform: translateY(-4px); }
+    .project-title { font-size: 24px; font-weight: 800; color: #002B5C; margin-bottom: 16px; font-family: 'Poppins', sans-serif; }
+    .tech-tags { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
+    .tech-tag { background: #E3F2FD; color: #002B5C; padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: 700; text-transform: uppercase; }
+    .project-bullets { list-style: none; }
+    .project-bullets li { font-size: 15px; color: #555; padding: 10px 0; line-height: 1.8; border-bottom: 1px solid #f0f0f0; }
+    .project-bullets li:last-child { border-bottom: none; }
+    .project-bullets li::before { content: "→ "; color: #00BCD4; font-weight: 800; margin-right: 10px; }
+    #projects { background: #FFFFFF; border-top: 3px solid #00BCD4; }
+    #experience { background: #F5F9FC; }
+    .exp-item { background: white; border-left: 4px solid #00BCD4; padding: 30px; margin-bottom: 25px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .exp-item:hover { box-shadow: 0 6px 20px rgba(0,188,212,0.15); transform: translateX(4px); }
+    .company { font-size: 12px; color: #00BCD4; font-weight: 800; text-transform: uppercase; margin-bottom: 6px; }
+    .job-title { font-size: 20px; font-weight: 800; color: #002B5C; margin-bottom: 6px; font-family: 'Poppins', sans-serif; }
+    .dates { font-size: 13px; color: #00BCD4; font-weight: 600; margin-bottom: 16px; }
+    .exp-bullets { list-style: none; }
+    .exp-bullets li { font-size: 14px; color: #555; padding: 8px 0; line-height: 1.8; }
+    .exp-bullets li::before { content: "▪ "; color: #00BCD4; margin-right: 8px; font-weight: 800; }
+    #skills { background: #F5F9FC; border-top: 3px solid #00BCD4; }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 25px; margin-top: 40px; }
+    .skill-card { background: linear-gradient(135deg, #E3F2FD 0%, #F0F4FF 100%); border: 2px solid #00BCD4; border-radius: 12px; padding: 32px; text-align: center; transition: all 0.3s ease; cursor: pointer; min-height: 180px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .skill-card:hover { background: linear-gradient(135deg, #00BCD4 0%, #0097A7 100%); color: white; transform: translateY(-8px); box-shadow: 0 12px 32px rgba(0,188,212,0.3); }
+    .skill-icon { font-size: 52px; margin-bottom: 14px; transition: transform 0.3s ease; }
+    .skill-card:hover .skill-icon { transform: scale(1.2) rotate(10deg); }
+    .skill-name { font-size: 16px; font-weight: 800; color: #002B5C; margin-bottom: 8px; font-family: 'Poppins', sans-serif; }
+    .skill-card:hover .skill-name { color: white; }
+    .skill-tech { font-size: 12px; color: #00BCD4; font-weight: 600; }
+    .skill-card:hover .skill-tech { color: #E8F4FF; }
+    #education { background: #F5F9FC; }
+    .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+    .edu-card { background: white; border: 2px solid #E0E0E0; border-radius: 12px; padding: 32px; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .edu-card:hover { border-color: #00BCD4; box-shadow: 0 8px 24px rgba(0,188,212,0.15); }
+    .school { font-size: 12px; color: #00BCD4; font-weight: 800; text-transform: uppercase; margin-bottom: 8px; }
+    .degree { font-size: 20px; font-weight: 800; color: #002B5C; margin-bottom: 12px; font-family: 'Poppins', sans-serif; }
+    .edu-info { font-size: 14px; color: #666; line-height: 1.7; }
+    #contact { background: linear-gradient(135deg, #002B5C 0%, #1a5a96 100%); color: white; text-align: center; padding: 100px 40px; }
+    .contact-email { font-size: 44px; font-weight: 800; margin: 30px 0; color: #00BCD4; font-family: 'Poppins', sans-serif; }
+    .contact-links { display: flex; gap: 40px; justify-content: center; margin: 40px 0; flex-wrap: wrap; }
+    .contact-link { color: #00BCD4; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 13px; border-bottom: 2px solid transparent; transition: all 0.3s ease; text-decoration: none; }
+    .contact-link:hover { border-bottom-color: #00BCD4; }
+    footer { background: #001a2e; color: #00BCD4; text-align: center; padding: 30px; font-size: 13px; border-top: 2px solid #00BCD4; }
+    a { color: #00BCD4; text-decoration: none; }
+    @media (max-width: 768px) { h1 { font-size: 44px; } .role { font-size: 18px; } .projects-grid { grid-template-columns: 1fr; } #hero { padding: 80px 20px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">DHRUVIN JHAVERI</div>
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <section id="hero">
+    <div class="hero-inner">
+      <h1>Dhruvin Jhaveri</h1>
+      <div class="role">ML Engineer & NLP Researcher</div>
+      <p class="tagline">Chess player. NYT enthusiast. Problem solver.</p>
+      
+      <div class="hero-socials">
+        <a href="https://www.linkedin.com/in/dhruvinjhaveri/" class="social-link" title="LinkedIn">in</a>
+        <a href="https://github.com/Dhruvin255" class="social-link" title="GitHub">gh</a>
+        <a href="mailto:djhaveri99@gmail.com" class="social-link" title="Email">@</a>
+      </div>
+
+      <button class="cta-button" onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})">View My Work</button>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 class="section-title">About</h2>
+    <p>ML engineer and researcher specializing in distributed systems and production reliability. At AWS Redshift, I engineered auto-scaling systems reducing p99 tail latency by 23% and SLA breaches by 31%. Built REST APIs, ETL pipelines, and systems designed to scale. Published peer-reviewed research on NLP transformers. Seeking Backend SDE roles in NYC.</p>
+  </section>
+
+  <section id="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <h3 class="project-title">🔧 Full Stack Artist Search App</h3>
+        <div class="tech-tags"><span class="tech-tag">Node.js</span><span class="tech-tag">Express</span><span class="tech-tag">React</span><span class="tech-tag">PostgreSQL</span></div>
+        <ul class="project-bullets">
+          <li>13 REST endpoints handling 10K+ concurrent requests at <strong>&lt;200ms p95 latency</strong></li>
+          <li>Optimized PostgreSQL queries to <strong>&lt;50ms</strong> with indexed views and tuning</li>
+          <li>Dockerized CI/CD pipeline <strong>cut deploy time 60%</strong></li>
+        </ul>
+      </div>
+      <div class="project-card">
+        <h3 class="project-title">⛓️ PharmaChain Supply Chain</h3>
+        <div class="tech-tags"><span class="tech-tag">Ethereum</span><span class="tech-tag">Solidity</span><span class="tech-tag">React</span></div>
+        <ul class="project-bullets">
+          <li><strong>2nd place Study Australia Entrepreneurship Challenge</strong> (Harvard recognized)</li>
+          <li>Smart contracts with RBAC and off-chain data aggregation</li>
+          <li>Projected <strong>95% traceability</strong> and <strong>25% efficiency</strong> improvement</li>
+        </ul>
+      </div>
+      <div class="project-card">
+        <h3 class="project-title">📚 IEEE ICISAA 2024: NLP Research</h3>
+        <div class="tech-tags"><span class="tech-tag">Python</span><span class="tech-tag">PyTorch</span><span class="tech-tag">BERT</span></div>
+        <ul class="project-bullets">
+          <li>First-authored peer-reviewed paper on BERT-based transformers</li>
+          <li>Analyzed <strong>961 samples</strong> with BERT + RoBERTa ensembles</li>
+          <li>Outperformed SVM, logistic regression, and TF-IDF baselines</li>
+        </ul>
+      </div>
+      <div class="project-card">
+        <h3 class="project-title">👨‍🏫 GDSC Competitive Coding</h3>
+        <div class="tech-tags"><span class="tech-tag">Leadership</span><span class="tech-tag">Community</span></div>
+        <ul class="project-bullets">
+          <li>Built competitive coding community from <strong>0 to 200+ members</strong> at USC</li>
+          <li>Organized weekly contests, mock interviews, algorithm workshops</li>
+          <li>Mentored <strong>300+ peers</strong> in DSA, system design, interview prep</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2 class="section-title">Experience</h2>
+    <div class="exp-item">
+      <div class="company">Amazon Web Services</div>
+      <div class="job-title">SDE Intern, AWS Redshift</div>
+      <div class="dates">May 2025 – Aug 2025 | Santa Clara, CA</div>
+      <ul class="exp-bullets">
+        <li>Engineered latency-aware auto-scaling in C++ reducing <strong>p99 tail latency 23%</strong></li>
+        <li>Built distributed throughput throttling with lock-free ring buffers; <strong>cut SLA breaches 31%</strong></li>
+        <li>Designed fault-tolerant retry logic achieving <strong>99.97% uptime</strong> across 12 nodes</li>
+      </ul>
+    </div>
+    <div class="exp-item">
+      <div class="company">Imarticus Learning</div>
+      <div class="job-title">Product Enablement Intern</div>
+      <div class="dates">Jan 2024 – May 2024 | Mumbai, India</div>
+      <ul class="exp-bullets">
+        <li>Shipped REST API serving <strong>50K+ daily requests</strong> at sub-100ms latency</li>
+        <li>Built BERT NLP pipeline reducing manual work <strong>90%</strong>; deployed to production</li>
+        <li>Deployed RAG-based QA system reducing support tickets <strong>35%</strong> in A/B test</li>
+      </ul>
+    </div>
+    <div class="exp-item">
+      <div class="company">Paypoint India</div>
+      <div class="job-title">Software Engineer Intern</div>
+      <div class="dates">Apr 2023 – Jul 2023 | Mumbai, India</div>
+      <ul class="exp-bullets">
+        <li>Built MERN stack processing <strong>1,000+ daily loan applications</strong> with auth & RBAC</li>
+        <li>Engineered ETL pipeline processing <strong>500K+ rows/day</strong>; cut data lag <strong>4h→22min</strong></li>
+        <li>Integrated XGBoost model achieving <strong>94% accuracy</strong> with Tableau dashboards</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card"><div class="skill-icon">🚀</div><div class="skill-name">Backend</div><div class="skill-tech">C++ • Node.js • Express</div></div>
+      <div class="skill-card"><div class="skill-icon">🗄️</div><div class="skill-name">Databases</div><div class="skill-tech">PostgreSQL • Redis • MongoDB</div></div>
+      <div class="skill-card"><div class="skill-icon">🧠</div><div class="skill-name">ML & AI</div><div class="skill-tech">PyTorch • BERT • Transformers</div></div>
+      <div class="skill-card"><div class="skill-icon">☁️</div><div class="skill-name">Cloud</div><div class="skill-tech">AWS • Docker • CI/CD</div></div>
+      <div class="skill-card"><div class="skill-icon">📊</div><div class="skill-name">Data</div><div class="skill-tech">SQL • Tableau • ETL</div></div>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2 class="section-title">Education</h2>
+    <div class="edu-grid">
+      <div class="edu-card"><div class="school">University of Southern California</div><div class="degree">M.S. Computer Science</div><div class="edu-info">Expected May 2026 | GPA: 3.40/4.0 | Data Science Track</div></div>
+      <div class="edu-card"><div class="school">SVKM MPSTME, Mumbai</div><div class="degree">B.Tech Computer Engineering</div><div class="edu-info">May 2024 | GPA: 3.61/4.0 | Honors</div></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title" style="color: #00BCD4; border-bottom-color: white;">Get In Touch</h2>
+    <div class="contact-email">djhaveri99@gmail.com</div>
+    <div class="contact-links">
+      <a href="https://www.linkedin.com/in/dhruvinjhaveri/" class="contact-link">LinkedIn</a>
+      <a href="https://github.com/Dhruvin255" class="contact-link">GitHub</a>
+      <a href="https://mendeley.com/search/?query=dhruvin" class="contact-link">Research</a>
+    </div>
+    <p style="margin-top: 30px; font-size: 14px;">📍 Los Angeles → New York | F-1 OPT + STEM</p>
+  </section>
+
+  <footer>
+    <p>© 2026 Dhruvin Jhaveri | <a href="#hero">Back to top</a></p>
+  </footer>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.from('.hero-inner', { opacity: 0, y: 30, duration: 1 });
+  </script>
+</body>
+</html>
